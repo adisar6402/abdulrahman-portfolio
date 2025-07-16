@@ -136,10 +136,53 @@ export default function Footer() {
             <VisitorCounter />
           </div>
           
-          <div className="py-6 text-center">
-            <p className="text-gray-500 dark:text-gray-400 text-sm">
+          <div className="py-6 text-center space-y-4">
+            <p className="text-sm text-gray-500 dark:text-gray-400">
               Crafted by Abdulrahman Adisa Amuda © 2025 &middot; Built with React, Tailwind CSS, and ❤️
             </p>
+            
+            <div className="flex flex-wrap justify-center gap-3 text-sm text-gray-500 dark:text-gray-400">
+              <a 
+                href="https://orcid.org/0009-0009-1207-8458" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                🔗 ORCID
+              </a>
+              <a 
+                href="https://www.linkedin.com/in/abdulrahman--engineering-ai-ml" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                💼 LinkedIn
+              </a>
+              <a 
+                href="https://x.com/RahmanAdis42469" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                🐦 Twitter
+              </a>
+              <a 
+                href="https://t.me/Rahmanxbarz" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                📨 Telegram
+              </a>
+              <a 
+                href="https://wa.me/2348023155814" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                📱 WhatsApp
+              </a>
+            </div>
           </div>
         </motion.div>
       </div>

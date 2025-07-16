@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useGitHubRepos } from "@/hooks/use-github-data";
-import { ExternalLink, Github, Star, GitFork } from "lucide-react";
-import { format } from "date-fns";
+import { ExternalLink, Github, Star, GitFork, Clock } from "lucide-react";
+import { format, formatDistanceToNow } from "date-fns";
 
 export default function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState("all");
@@ -53,8 +53,8 @@ export default function ProjectsSection() {
   };
 
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
-      <div className="max-w-7xl mx-auto">
+    <section id="projects" className="py-20 bg-muted/30">
+      <div className="px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -122,7 +122,7 @@ export default function ProjectsSection() {
             animate="visible"
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            <AnimatePresence mode="wait">
+            <AnimatePresence>
               {filteredRepos.map((repo: any) => (
                 <motion.div
                   key={repo.id}
@@ -137,11 +137,21 @@ export default function ProjectsSection() {
                         {repo.name.toLowerCase().includes("ai") ? "🤖" : 
                          repo.name.toLowerCase().includes("flutter") ? "📱" : "🌐"}
                       </div>
-                      <h3 className="text-xl font-bold">{repo.name}</h3>
+                      <h3 className="text-xl font-bold line-clamp-1">{repo.name}</h3>
                     </div>
-                    <div className="flex items-center space-x-1 text-yellow-500">
-                      <Star className="h-4 w-4" />
-                      <span className="text-sm">{repo.stargazers_count}</span>
+                    <div className="flex items-center space-x-3">
+                      {repo.stargazers_count > 0 && (
+                        <div className="flex items-center space-x-1 text-yellow-500">
+                          <Star className="h-4 w-4" />
+                          <span className="text-sm font-medium">{repo.stargazers_count}</span>
+                        </div>
+                      )}
+                      {repo.forks_count > 0 && (
+                        <div className="flex items-center space-x-1 text-blue-500">
+                          <GitFork className="h-4 w-4" />
+                          <span className="text-sm font-medium">{repo.forks_count}</span>
+                        </div>
+                      )}
                     </div>
                   </div>
 
@@ -163,15 +173,19 @@ export default function ProjectsSection() {
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-muted-foreground">
-                      Updated {format(new Date(repo.updated_at), "MMM d, yyyy")}
-                    </span>
+                    <div className="flex items-center space-x-1 text-sm text-muted-foreground">
+                      <Clock className="h-3 w-3" />
+                      <span>
+                        {formatDistanceToNow(new Date(repo.updated_at), { addSuffix: true })}
+                      </span>
+                    </div>
                     <div className="flex space-x-3">
                       <a
                         href={repo.html_url}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-muted-foreground hover:text-primary transition-colors"
+                        title="View on GitHub"
                       >
                         <Github className="h-4 w-4" />
                       </a>
@@ -181,6 +195,7 @@ export default function ProjectsSection() {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-muted-foreground hover:text-primary transition-colors"
+                          title="Live Demo"
                         >
                           <ExternalLink className="h-4 w-4" />
                         </a>

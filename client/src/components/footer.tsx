@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { useGitHubData } from "@/hooks/use-github-data";
+import VisitorCounter from "@/components/visitor-counter";
+import NewsletterSignup from "@/components/newsletter-signup";
 
 export default function Footer() {
   const { data: githubData } = useGitHubData();
@@ -21,7 +23,7 @@ export default function Footer() {
   return (
     <footer className="py-12 px-4 sm:px-6 lg:px-8 border-t border-border">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -86,6 +88,15 @@ export default function Footer() {
               </p>
             </div>
           </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <NewsletterSignup />
+          </motion.div>
         </div>
 
         <motion.div
@@ -93,11 +104,14 @@ export default function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="border-t border-border pt-8 text-center"
+          className="border-t border-border pt-8"
         >
-          <p className="text-muted-foreground">
-            Crafted by Abdulrahman Adisa Amuda © 2025. Built with React, Tailwind CSS, and passion.
-          </p>
+          <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+            <p className="text-muted-foreground text-center md:text-left">
+              Crafted by Abdulrahman Adisa Amuda © 2025. Built with React, Tailwind CSS, and passion.
+            </p>
+            <VisitorCounter />
+          </div>
         </motion.div>
       </div>
     </footer>

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Calendar, Clock } from "lucide-react";
 import { blogPosts } from "@/data/blog-posts";
+import { Link } from "wouter";
 
 export default function BlogSection() {
   const containerVariants = {
@@ -19,8 +20,8 @@ export default function BlogSection() {
   };
 
   return (
-    <section id="blog" className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section id="blog" className="py-20">
+      <div className="px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -44,12 +45,12 @@ export default function BlogSection() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {blogPosts.map((post, index) => (
-            <motion.article
-              key={post.id}
-              variants={itemVariants}
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="glass p-6 rounded-2xl hover:bg-white/20 transition-all cursor-pointer group"
-            >
+            <Link key={post.id} href={`/blog/${post.id}`}>
+              <motion.article
+                variants={itemVariants}
+                whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                className="glass p-6 rounded-2xl hover:bg-white/20 transition-all cursor-pointer group"
+              >
               <div className="relative overflow-hidden rounded-xl mb-4">
                 <img
                   src={post.image}
@@ -88,7 +89,8 @@ export default function BlogSection() {
                   </span>
                 ))}
               </div>
-            </motion.article>
+              </motion.article>
+            </Link>
           ))}
         </motion.div>
       </div>

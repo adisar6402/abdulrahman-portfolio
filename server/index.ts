@@ -67,16 +67,16 @@ app.use((req, res, next) => {
 
   // ALWAYS serve the app on port 5000
 // This serves both the API and the client.
-// 127.0.0.1 ensures compatibility on Windows
-const port = 5000;
+// PORT must be dynamic for deployment platforms like Render
+const port = Number(process.env.PORT) || 5000;
 
 server.listen(
   {
     port,
-    host: "127.0.0.1", // ✅ safer than "0.0.0.0" on Windows
+    host: "0.0.0.0", // ✅ Needed for Render to detect open port
   },
   () => {
-    log(`🚀 Serving on http://127.0.0.1:${port}`);
+    log(`🚀 Serving on http://0.0.0.0:${port}`);
   }
 );
 })();

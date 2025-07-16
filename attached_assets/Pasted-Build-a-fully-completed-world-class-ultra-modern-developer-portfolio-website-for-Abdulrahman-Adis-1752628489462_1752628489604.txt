@@ -1,0 +1,83 @@
+Build a fully completed, world-class, ultra-modern developer portfolio website for "Abdulrahman Adisa Amuda" — a Machine Learning Engineer, Mobile App Developer (Flutter/Dart), and Full Stack Developer (Python, Web). This should not just be a static site — it should feel like a smart product. Use the latest tech stack and complete everything listed below. Do not stop until the entire project is built, unless system or token limits are reached.
+
+🔥 Purpose: The site must look and feel like a high-end SaaS product — clean, beautiful, smooth, and interactive. Visitors should be glued to it.
+
+📌 Tech Stack:
+- Next.js (App Router preferred) or Flask if simpler
+- Tailwind CSS for styling
+- Framer Motion for animations
+- ShadCN or Headless UI for components
+- GitHub API to dynamically fetch projects (My GitHub: https://github.com/adisar6402)
+- Markdown-based blog system
+- Mobile-first responsive design
+- PWA-ready
+
+📁 Required Sections & Features:
+
+1. 🎯 Hero Section
+- My full name: "Abdulrahman Adisa Amuda"
+- Subtitle: “ML Engineer • Flutter/Dart Dev • Python Full Stack Developer”
+- Animated typing or sliding effect
+- CTA buttons: “Explore My Work” & “Download Resume”
+- Dark/Light mode toggle
+- Include my profile photo (`profile.jpg`) on the side
+
+2. 🧠 About Me
+- Use this bio:
+“I’m Abdulrahman Adisa Amuda — a Machine Learning Engineer, Mobile App Developer (Flutter), and Full Stack Python Developer passionate about building impactful digital solutions. I specialize in web, mobile, and AI-powered applications, with strong hands-on experience using Flutter, Dart, Python, and modern JavaScript stacks. I'm IBM-certified and currently focused on high-impact projects across fintech, logistics, and public service.”
+- Include skills/stack logos (e.g. Python, Flutter, Firebase, Tailwind, JS)
+
+3. 🚀 Projects Section (Dynamic GitHub Integration)
+- Use GitHub API to fetch my **pinned** or **most-starred** repos from https://github.com/adisar6402
+- Show: project name, description, tags, stars, last updated, GitHub link, live demo link (if available)
+- Categorize into: Machine Learning, Web Dev, Mobile Apps
+- Include icons/logos for tech used
+- Optional: Filter/sort by tech
+
+4. 🤖 AI Chat Assistant (Mock)
+- Floating AI assistant button
+- Open a chatbox UI (no backend)
+- Pre-program responses to:
+  • “What’s your best project?”
+  • “Show me something built with Flutter”
+  • “Tell me about Abdulrahman’s skills”
+- Fun, animated UI with typing delay
+
+5. ✍️ Blog Section
+- Blog engine using markdown files in `/posts`
+- Show featured image, title, excerpt, date
+- Click to view full article
+- Styled like a tech blog
+
+6. 📥 Contact Section
+- Contact form (name, email, message)
+- Use Formspree placeholder or mock POST
+- Include social media icons: GitHub, LinkedIn, Twitter, Email
+
+7. 📄 Resume
+- Add a “Download My Resume” button
+- Link to `resume.pdf` (if uploaded)
+
+8. 🧩 Footer
+- Clean footer with links
+- GitHub stats: repo count, followers, stars
+- Line: “Crafted by Abdulrahman Adisa Amuda © 2025”
+
+💡 Design Notes:
+- Elegant, clean, dark/light mode toggle
+- Framer Motion animations (or GSAP)
+- Hover/magnetic button effects
+- Custom cursor (optional)
+- Smooth scroll & transitions
+- Fully responsive (mobile-first)
+- Fast loading, PWA enabled
+- SEO-optimized with OpenGraph & metadata
+
+📦 Structure:
+- Modular file system (components, pages, styles, assets)
+- Clean, readable code
+- All assets loaded locally (unless needed from CDN)
+
+✅ Build the full site. Not just the layout. Fully develop every section. Only stop if system limitations are reached. Do not use dummy placeholders unless necessary — auto-fetch real GitHub data and show complete UI.
+
+This should be a stunning, interactive, addictive, production-ready dev portfolio — more like an app or product than a resume.

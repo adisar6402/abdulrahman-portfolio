@@ -11,31 +11,40 @@ export default function NewsletterSignup() {
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
+  e.preventDefault();
+  if (!email) return;
 
-    setIsSubmitting(true);
+  setIsSubmitting(true);
 
-    try {
-      // Simulate newsletter signup
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      
-      toast({
-        title: "Subscribed!",
-        description: "Thanks for subscribing to my newsletter. You'll receive updates about my latest projects and tech insights.",
-      });
-      
-      setEmail("");
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "There was a problem subscribing. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
+  try {
+    const response = await fetch("/api/newsletter", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.error || "Subscription failed");
     }
-  };
+
+    toast({
+      title: "Subscribed!",
+      description: "Thanks for subscribing to my newsletter. You'll receive updates about my latest projects and tech insights.",
+    });
+
+    setEmail("");
+  } catch (error) {
+    toast({
+      title: "Error",
+      description: "There was a problem subscribing. Please try again.",
+      variant: "destructive",
+    });
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   return (
     <motion.div

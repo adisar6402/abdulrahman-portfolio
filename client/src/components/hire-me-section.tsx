@@ -37,40 +37,50 @@ export default function HireMeSection() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+  e.preventDefault();
+  setIsSubmitting(true);
 
-    try {
-      // Simulate form submission
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      
-      toast({
-        title: "Consultation Request Sent!",
-        description: "Abdulrahman will get back to you within 24 hours to confirm the meeting details.",
-      });
-      
-      setIsOpen(false);
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        projectType: "",
-        budget: "",
-        timeline: "",
-        description: "",
-        preferredDay: "",
-        preferredTime: "",
-      });
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "There was a problem sending your request. Please try again or contact directly.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  try {
+    const response = await fetch("/api/hire", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) throw new Error(result.error || "Failed to send");
+
+    toast({
+      title: "Consultation Request Sent!",
+      description: "Abdulrahman will get back to you within 24 hours to confirm the meeting details.",
+    });
+
+    setIsOpen(false);
+    setFormData({
+      name: "",
+      email: "",
+      company: "",
+      projectType: "",
+      budget: "",
+      timeline: "",
+      description: "",
+      preferredDay: "",
+      preferredTime: "",
+    });
+  } catch (error) {
+    console.error("Hire form error:", error);
+    toast({
+      title: "Error",
+      description: "There was a problem sending your request. Please try again or contact directly.",
+      variant: "destructive",
+    });
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>

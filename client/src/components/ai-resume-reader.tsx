@@ -1,7 +1,13 @@
-import { useState } from "react";
+import { useState, useRef } from "react"; // 🔧 updated
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { FileText, Upload, Brain, Download } from "lucide-react";
 
@@ -11,6 +17,8 @@ export default function AIResumeReader() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [analysis, setAnalysis] = useState<string | null>(null);
   const { toast } = useToast();
+
+  const fileInputRef = useRef<HTMLInputElement>(null); // 🔧 updated
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const uploadedFile = event.target.files?.[0];
@@ -28,12 +36,11 @@ export default function AIResumeReader() {
 
   const analyzeResume = async () => {
     if (!file) return;
-
     setIsAnalyzing(true);
-    
+
     // Simulate AI analysis
     await new Promise((resolve) => setTimeout(resolve, 3000));
-    
+
     setAnalysis(`
 ## AI Resume Analysis
 
@@ -69,9 +76,9 @@ export default function AIResumeReader() {
 • Mobile app development lead
 • Tech startup CTO opportunities
     `);
-    
+
     setIsAnalyzing(false);
-    
+
     toast({
       title: "Analysis Complete!",
       description: "AI has analyzed your resume and provided detailed insights.",
@@ -81,14 +88,12 @@ export default function AIResumeReader() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button 
-          variant="outline" 
-          className="glass hover:bg-white/20 transition-all"
-        >
+        <Button variant="outline" className="glass hover:bg-white/20 transition-all">
           <Brain className="mr-2 h-4 w-4" />
           AI Resume Reader
         </Button>
       </DialogTrigger>
+
       <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto" aria-describedby="resume-analysis-description">
         <DialogHeader>
           <DialogTitle className="flex items-center space-x-2">
@@ -96,10 +101,11 @@ export default function AIResumeReader() {
             <span>AI Resume Analysis</span>
           </DialogTitle>
         </DialogHeader>
+
         <div id="resume-analysis-description" className="sr-only">
           Upload a PDF resume to get AI-powered analysis and insights about your skills, experience, and career potential.
         </div>
-        
+
         <div className="space-y-6">
           {!file && (
             <motion.div
@@ -112,21 +118,23 @@ export default function AIResumeReader() {
               <p className="text-muted-foreground mb-4">
                 Upload a PDF resume and let AI analyze your skills, experience, and career potential.
               </p>
-              <label className="cursor-pointer">
-                <Button className="mb-2">
-                  <Upload className="mr-2 h-4 w-4" />
-                  Choose PDF File
-                </Button>
-                <input
-                  type="file"
-                  accept=".pdf"
-                  onChange={handleFileUpload}
-                  className="hidden"
-                />
-              </label>
-              <p className="text-xs text-muted-foreground">
-                Maximum file size: 10MB
-              </p>
+
+              {/* 🔧 updated: trigger file upload via button click */}
+              <Button className="mb-2" onClick={() => fileInputRef.current?.click()}>
+                <Upload className="mr-2 h-4 w-4" />
+                Choose PDF File
+              </Button>
+
+              <input
+                id="resume-upload"
+                type="file"
+                accept=".pdf"
+                ref={fileInputRef} // 🔧 updated
+                onChange={handleFileUpload}
+                className="hidden"
+              />
+
+              <p className="text-xs text-muted-foreground">Maximum file size: 10MB</p>
             </motion.div>
           )}
 
@@ -146,7 +154,7 @@ export default function AIResumeReader() {
                     </p>
                   </div>
                 </div>
-                <Button 
+                <Button
                   onClick={analyzeResume}
                   disabled={isAnalyzing}
                   className="bg-gradient-to-r from-purple-600 to-pink-600"
@@ -177,15 +185,15 @@ export default function AIResumeReader() {
               >
                 <div className="flex items-center justify-between">
                   <h3 className="font-semibold text-lg">Analysis Results</h3>
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     size="sm"
                     onClick={() => {
-                      const blob = new Blob([analysis], { type: 'text/markdown' });
+                      const blob = new Blob([analysis], { type: "text/markdown" });
                       const url = URL.createObjectURL(blob);
-                      const a = document.createElement('a');
+                      const a = document.createElement("a");
                       a.href = url;
-                      a.download = 'resume-analysis.md';
+                      a.download = "resume-analysis.md";
                       a.click();
                       URL.revokeObjectURL(url);
                     }}
@@ -195,15 +203,15 @@ export default function AIResumeReader() {
                   </Button>
                 </div>
                 <div className="prose prose-sm dark:prose-invert max-w-none bg-muted/30 p-6 rounded-lg">
-                  <div 
-                    dangerouslySetInnerHTML={{ 
+                  <div
+                    dangerouslySetInnerHTML={{
                       __html: analysis
                         .replace(/^## (.*)/gm, '<h2 class="text-lg font-semibold mb-3 text-primary">$1</h2>')
                         .replace(/^\*\*(.*)\*\*/gm, '<h3 class="font-medium mb-2">$1</h3>')
                         .replace(/^• (.*)/gm, '<li class="mb-1">$1</li>')
                         .replace(/^(\d+)\. (.*)/gm, '<li class="mb-1">$2</li>')
                         .replace(/\n\n/g, '</p><p class="mb-3">')
-                        .replace(/^(?!<)/gm, '<p class="mb-3">')
+                        .replace(/^(?!<)/gm, '<p class="mb-3">'),
                     }}
                   />
                 </div>

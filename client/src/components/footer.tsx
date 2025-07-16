@@ -167,7 +167,7 @@ export default function Footer() {
                 🐦 Twitter
               </a>
               <a 
-                href="https://t.me/Rahmanxbarz" 
+                href="https://t.me/adisar6402" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="hover:underline"

@@ -1,3 +1,12 @@
+import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config({ path: path.join(__dirname, ".env") });
+
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
@@ -57,14 +66,17 @@ app.use((req, res, next) => {
   }
 
   // ALWAYS serve the app on port 5000
-  // this serves both the API and the client.
-  // It is the only port that is not firewalled.
-  const port = 5000;
-  server.listen({
+// This serves both the API and the client.
+// 127.0.0.1 ensures compatibility on Windows
+const port = 5000;
+
+server.listen(
+  {
     port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
-    log(`serving on port ${port}`);
-  });
+    host: "127.0.0.1", // ✅ safer than "0.0.0.0" on Windows
+  },
+  () => {
+    log(`🚀 Serving on http://127.0.0.1:${port}`);
+  }
+);
 })();

@@ -58,13 +58,13 @@ export default function ContactSection() {
     },
     {
       name: "LinkedIn",
-      url: "https://linkedin.com/in/abdulrahman-adisa",
+      url: "https://www.linkedin.com/in/abdulrahman--engineering-ai-ml",
       icon: Linkedin,
       color: "bg-blue-600 hover:bg-blue-700",
     },
     {
       name: "Twitter",
-      url: "https://twitter.com/adisar6402",
+      url: "https://x.com/RahmanAdis42469",
       icon: Twitter,
       color: "bg-blue-400 hover:bg-blue-500",
     },
@@ -201,7 +201,7 @@ export default function ContactSection() {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className={`${social.color} text-white rounded-xl p-4 flex items-center space-x-3 transition-colors`}
+                    className={`${social.color} text-white rounded-xl p-4 flex items-center space-x-3 transition-colors hover:underline`}
                   >
                     <social.icon className="h-5 w-5" />
                     <span className="font-medium">{social.name}</span>

@@ -1,14 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useGitHubRepos } from "@/hooks/use-github-data";
-import { ExternalLink, Github, Star, GitFork, Clock } from "lucide-react";
+import { ExternalLink, Github, Star, GitFork, Clock, Heart } from "lucide-react";
 import { format, formatDistanceToNow } from "date-fns";
 
 export default function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState("all");
+  const [projectVotes, setProjectVotes] = useState<Record<string, number>>({});
   const { data: repos, isLoading } = useGitHubRepos();
+
+  // Load votes from localStorage
+  useEffect(() => {
+    const storedVotes = localStorage.getItem('project-votes');
+    if (storedVotes) {
+      setProjectVotes(JSON.parse(storedVotes));
+    }
+  }, []);
+
+  const handleVote = (repoId: string) => {
+    const newVotes = { ...projectVotes };
+    newVotes[repoId] = (newVotes[repoId] || 0) + 1;
+    setProjectVotes(newVotes);
+    localStorage.setItem('project-votes', JSON.stringify(newVotes));
+  };
 
   const filters = [
     { id: "all", label: "All Projects" },
@@ -179,7 +195,15 @@ export default function ProjectsSection() {
                         {formatDistanceToNow(new Date(repo.updated_at), { addSuffix: true })}
                       </span>
                     </div>
-                    <div className="flex space-x-3">
+                    <div className="flex items-center space-x-3">
+                      <button
+                        onClick={() => handleVote(repo.id)}
+                        className="flex items-center space-x-1 text-muted-foreground hover:text-red-500 transition-colors group"
+                        title="Like this project"
+                      >
+                        <Heart className="h-4 w-4 group-hover:fill-current" />
+                        <span className="text-sm">{projectVotes[repo.id] || 0}</span>
+                      </button>
                       <a
                         href={repo.html_url}
                         target="_blank"

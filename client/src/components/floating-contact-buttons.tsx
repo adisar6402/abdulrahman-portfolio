@@ -10,14 +10,14 @@ export default function FloatingContactButtons() {
     {
       name: "WhatsApp",
       icon: MessageCircle,
-      url: "https://wa.me/2348123456789", // Replace with actual WhatsApp number
+      url: "https://wa.me/2348023155814",
       color: "bg-green-500 hover:bg-green-600",
       hoverText: "Chat on WhatsApp"
     },
     {
       name: "Telegram",
       icon: Send,
-      url: "https://t.me/adisar6402", // Replace with actual Telegram username
+      url: "https://t.me/adisar6402",
       color: "bg-blue-500 hover:bg-blue-600",
       hoverText: "Message on Telegram"
     }

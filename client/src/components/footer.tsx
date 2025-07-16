@@ -107,9 +107,37 @@ export default function Footer() {
           className="border-t border-border pt-8"
         >
           <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-            <p className="text-muted-foreground text-center md:text-left">
-              Crafted by Abdulrahman Adisa Amuda © 2025. Built with React, Tailwind CSS, and passion.
-            </p>
+            <div className="text-center md:text-left">
+              <p className="text-muted-foreground mb-2">
+                Crafted by Abdulrahman Adisa Amuda © 2025. Built with React, Tailwind CSS, and ❤️
+              </p>
+              <div className="flex items-center justify-center md:justify-start space-x-4">
+                <a
+                  href="https://github.com/adisar6402"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  GitHub
+                </a>
+                <a
+                  href="https://linkedin.com/in/abdulrahman-adisa-amuda"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href="https://t.me/adisar6402"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Telegram
+                </a>
+              </div>
+            </div>
             <VisitorCounter />
           </div>
         </motion.div>

@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/theme-provider";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import AIResumeReader from "@/components/ai-resume-reader";
+import HireMeSection from "@/components/hire-me-section";
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -70,6 +72,11 @@ export default function Navigation() {
           </div>
 
           <div className="flex items-center space-x-4">
+            <div className="hidden md:flex items-center space-x-3">
+              <AIResumeReader />
+              <HireMeSection />
+            </div>
+            
             <Button
               variant="ghost"
               size="icon"
@@ -119,6 +126,10 @@ export default function Navigation() {
                   {item.label}
                 </button>
               ))}
+              <div className="pt-4 border-t border-white/20 space-y-3">
+                <AIResumeReader />
+                <HireMeSection />
+              </div>
             </div>
           </motion.div>
         )}

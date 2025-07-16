@@ -106,39 +106,40 @@ export default function Footer() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="border-t border-border pt-8"
         >
-          <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-            <div className="text-center md:text-left">
-              <p className="text-muted-foreground mb-2">
-                Crafted by Abdulrahman Adisa Amuda © 2025. Built with React, Tailwind CSS, and ❤️
-              </p>
-              <div className="flex items-center justify-center md:justify-start space-x-4">
-                <a
-                  href="https://github.com/adisar6402"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  GitHub
-                </a>
-                <a
-                  href="https://linkedin.com/in/abdulrahman-adisa-amuda"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  LinkedIn
-                </a>
-                <a
-                  href="https://t.me/adisar6402"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Telegram
-                </a>
-              </div>
+          <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 mb-6">
+            <div className="flex items-center justify-center md:justify-start space-x-4">
+              <a
+                href="https://github.com/adisar6402"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                GitHub
+              </a>
+              <a
+                href="https://linkedin.com/in/abdulrahman-adisa-amuda"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                LinkedIn
+              </a>
+              <a
+                href="https://t.me/adisar6402"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                Telegram
+              </a>
             </div>
             <VisitorCounter />
+          </div>
+          
+          <div className="py-6 text-center">
+            <p className="text-gray-500 dark:text-gray-400 text-sm">
+              Crafted by Abdulrahman Adisa Amuda © 2025 &middot; Built with React, Tailwind CSS, and ❤️
+            </p>
           </div>
         </motion.div>
       </div>

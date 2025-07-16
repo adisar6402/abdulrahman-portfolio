@@ -89,13 +89,16 @@ export default function AIResumeReader() {
           AI Resume Reader
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto" aria-describedby="resume-analysis-description">
         <DialogHeader>
           <DialogTitle className="flex items-center space-x-2">
             <Brain className="h-5 w-5 text-primary" />
             <span>AI Resume Analysis</span>
           </DialogTitle>
         </DialogHeader>
+        <div id="resume-analysis-description" className="sr-only">
+          Upload a PDF resume to get AI-powered analysis and insights about your skills, experience, and career potential.
+        </div>
         
         <div className="space-y-6">
           {!file && (

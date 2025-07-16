@@ -83,13 +83,16 @@ export default function HireMeSection() {
           Hire Me
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto" aria-describedby="hire-me-description">
         <DialogHeader>
           <DialogTitle className="flex items-center space-x-2 text-xl">
             <Briefcase className="h-6 w-6 text-primary" />
             <span>Let's Work Together</span>
           </DialogTitle>
         </DialogHeader>
+        <div id="hire-me-description" className="sr-only">
+          Schedule a consultation to discuss your project requirements, timeline, and how Abdulrahman can help bring your ideas to life.
+        </div>
         
         <div className="space-y-6">
           <div className="text-center space-y-2">
